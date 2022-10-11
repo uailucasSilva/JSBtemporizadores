@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>   
+    <script>
+        var slidePos = 0;
+       // var vetImagens = ["carnage.jpg", "cavLua.jpg", "cavLua2.jpg", "iron.jpg"];
+       // var vetDescricoes = ["Desc1", "Desc2", "Desc3", "Desc4"];
+       var slideShow = [
+        {img: "carnage.jpg", nome:"Carnificina", descricao:"Desc1"},
+        {img: "cavLua.jpg", nome:"Cavaleiro da lua",descricao:"Desc2"},
+        {img: "cavLua2.jpg", nome:"Cavaleiro da lua 2", descricao:"Desc3"},
+        {img: "iron.jpg", nome:"O brabo", descricao:"Desc4"},
+       ] 
+       var idCron;
+        function play(){
+            idCron = setInterval(mudarImg, 1000);
+        }        
+        function mudarImg() {
+            slidePos++;
+            if(slidePos>slideShow.length-1) slidePos =0;
+            document.getElementById("slideShow").src = `img/${slideShow[slidePos].img}`;            
+            document.getElementById("nome").innerHTML = slideShow[slidePos].nome;
+            document.getElementById("descricao").innerHTML = slideShow[slidePos].descricao;
+        }
+        function pausar(){
+            clearInterval(idCron);
+        }
+    </script>
+</head>
+
+<body onload="play()">   
+    <img src="img/carnage.jpg" id="slideShow" onmouseenter="pausar()" onmouseleave="play()">
+    <h2 id="nome">Carnificina</h2>
+    <p id="descricao">Desc1</p>
+</body>
+
+</html>
